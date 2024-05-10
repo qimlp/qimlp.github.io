@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>EF4WSD&LLM: An Evaluation Framework for WSD and LLMs</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+html{
+	margin: 0px;
+	padding: 0px;
+	background-color: silver;
+}
+body{
+	background-color: white;
+	margin: 0px auto;
+	max-width: 1000px;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+}
+header{
+	background: #3E707D;
+	padding: 25px;
+	color: white;
+}
+header > p{
+	font-style: italic;
+}
+section{
+	background-color: #282A34;
+	position: sticky;
+	top: 0;
+	display: grid;
+	grid-template-columns:  repeat(auto-fill, 150px);
+
+}
+nav{
+	list-style: none;
+	flex: 1;
+	padding: 10px 0px 10px 0px;
+	text-align: center;
+}
+nav:hover{
+	background-color: #4AA36E;
+}
+nav > a{
+	text-decoration: none;
+	font-weight: bolder;
+	color: white;
+}
+nav > a:hover{
+	text-decoration: underline;
+}
+main{
+	padding: 25px;
+}
+footer{
+	background-color: #3E707D;
+	padding: 25px;
+	font-size: 14px;
+	color: white;
+	text-align: center;
+}
+</style>
+</head>
+
+	
+	
+<body>
+<header>
+	<h1>EF4WSD&LLM</h1>
+	<p style="text-indent: 50px; padding: 0px 25px;">The website publishes a standard <strong>Evaluation Framework</strong> that is suitable for identifying long-tail word senses in <strong>Word Sense Disambiguation</strong> tasks and evaluating the ability of <strong>Large Language Models</strong> to understand long-tail word senses, called <strong>EF4WSD&LLM</strong>.</p>
+	<p style="font-size: 12px; text-align: right;">
+		<strong>Author:</strong> X X X, X X X and X X X<br>
+		<strong>Release Time:</strong> 2023/12/26
+	</p>
+</header>
+
+<section>
+	<nav><a href="#P1">Introduction</a></nav>
+	<nav><a href="#P2">Download</a></nav>
+	<nav><a href="#P3">Evaluation</a></nav>
+	<nav><a href="#P4">References</a></nav>
+	<nav><a href="#P5">Contact</a></nav>
+</section>
+
+<main>
+<h3 id="P1">Introduction</h3>
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">In natural language processing, an excellent evaluation framework is crucial to the development of target tasks or fields.
+The Word Sense Disambiguation (WSD) task has benefited from some excellent evaluation frameworks and has developed steadily. However, as models effectively identify high-frequency word senses, the current evaluation framework that does not distinguish between high- and low-frequency word senses (that is, head and long-tail word senses) is no longer applicable.
+In addition, the emergence of Large Language Models (LLMs) requires some effective evaluation frameworks to protect their development.
+Based on the evaluation framework of WSD proposed by Raganato et al.<sup>1</sup>, called the original evaluation framework, this website constructs an evaluation framework that distinguishes high- and low-frequency word senses. The evaluation framework can be used to evaluate the ability of WSD systems to identify long-tail word senses，as well as the ability of LLMs to understand and leverage long-tail word senses.
+</p>
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+The evaluation framework is based on the original evaluation framework<sup>1</sup>, and uses <strong>ChatGPT-4</strong> and <strong>Manual Verification</strong> to distinguish high- and low-frequency word senses on the original datasets to finally obtain EF4WSD&LLM.
+EF4WSD&LLM includes 7 datasets, namely Senseval-2, Senseval-3, SemEval-07, SemEval-13, SemEval-15, ALL and SemCor, of which SemCor is often used as a training set, SemEval-07 is used as a development set, and Senseval-2, Senseval-3, SemEval-13, SemEval-15 and ALL are used as test sets. 
+ALL is a dataset obtained by concatenating Senseval-2, Senseval-3, SemEval-07, SemEval-13 and SemEval-15.
+The statistical information of high- and low-frequency word senses in each dataset are shown in the table below.
+</p>
+<img src="./imgs/ef_si.png" width="95%" style="margin: 0px 25px;">
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+<strong>Usage:</strong> The usage of this evaluation framework is the same as that of the original evaluation framework<sup>1</sup>. We just added attributes to distinguish high- and low-frequency word senses in the corresponding tags in the XML text of the datasets. The attribute <strong><i>hf="Yes"</i></strong> in the tag <strong><i>instance</i></strong> represents a high-frequency word sense, whereas the attribute <strong><i>hf="No"</i></strong> represents a low-frequency word sense (that is, long-tail word sense), as shown in the figure below.
+</p>
+<img src="./imgs/ef_xml.png" width="95%" style="margin: 0px 25px;">
+
+
+
+
+<br><br>
+<h3 id="P2">Download</h3>
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+The datasets involved in the evaluation framework can be downloaded from the link below. The evaluation metric of this evaluation framework still uses <strong>F1-score (%)</strong>. For other information not covered, please refer to the original evaluation framework<sup>1</sup>, and its link is <a href="http://lcl.uniroma1.it/wsdeval/">http://lcl.uniroma1.it/wsdeval/</a>.
+</p>
+<ul>
+	<li>Senseval-2: <a href="/datasets/senseval2.data.xml" download>download</a></li>
+	<li>Senseval-3: <a href="/datasets/senseval3.data.xml" download>download</a></li>
+	<li>SemEval-07: <a href="/datasets/semeval2007.data.xml" download>download</a></li>
+	<li>SemEval-13: <a href="/datasets/semeval2013.data.xml" download>download</a></li>
+	<li>SemEval-15: <a href="/datasets/semeval2015.data.xml" download>download</a></li>
+	<li>ALL: <a href="/datasets/ALL.data.xml" download>download</a></li>
+	<li>SemCor: <a href="/datasets/semcor.data.zip" download>download</a></li>
+</ul>
+
+
+
+<br><br>
+<h3 id="P3">Evaluation</h3>
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+In order to verify and analyze the evaluation framework, two parts of analysis experiments were constructed under the word sense disambiguation task and under the large language models.
+For the model construction method that validates the ability of large language models to understand and leverage long-tail word senses, please refer to the corresponding published paper of the evaluation framework <i>(the paper is currently in the submission status, and the link will be released in time after acceptance)</i>.
+The experimental results are shown below.
+</p>
+
+<h4 style="text-indent: 25px;">1. Evaluation in WSD:</h4>
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+	<strong>BEM<sup>2</sup> (ACL 2020):</strong> Moving Down the Long Tail of Word Sense Disambiguation with Gloss-Informed Biencoders. 
+	<i>LINK:</i>&nbsp;&nbsp;<a href="https://arxiv.org/abs/2005.02590">arxiv.org</a>&nbsp;&nbsp;<a href="https://github.com/facebookresearch/wsd-biencoders">GitHub</a>
+</p>
+<img src="./imgs/bem.png" width="95%" style="margin: 0px 25px;">
+
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+	<strong>EWISER<sup>3</sup> (ACL 2020):</strong> Through the 80% Glass Ceiling: Raising the State of the Art in Word Sense Disambiguation by Incorporating Knowledge Graph Information. 
+	<i>LINK:</i>&nbsp;&nbsp;<a href="https://aclanthology.org/2020.acl-main.255/">ACL Anthology</a>
+</p>
+<img src="./imgs/ewiser.png" width="95%" style="margin: 0px 25px;">
+
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+	<strong>ESR<sup>4</sup> (EMNLP 2021):</strong> Improved Word Sense Disambiguation with Enhanced Sense Representations. 
+	<i>LINK:</i>&nbsp;&nbsp;<a href="https://aclanthology.org/2021.findings-emnlp.365.pdf">ACL Anthology</a>
+</p>
+<img src="./imgs/esr.png" width="95%" style="margin: 0px 25px;">
+
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+	<strong>KWSD<sup>5</sup> (KBS 2020):</strong> Word Sense Disambiguation: A comprehensive knowledge exploitation framework. 
+	<i>LINK:</i>&nbsp;&nbsp;<a href="https://github.com/lwmlyy/Knowledge-based-WSD?tab=readme-ov-file">GitHub</a>&nbsp;&nbsp;<a href="https://www.sciencedirect.com/science/article/pii/S0950705119304344">ScienceDirect</a>
+</p>
+<img src="./imgs/kwsd.png" width="95%" style="margin: 0px 25px;">
+
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+	<strong>BERT-WSD<sup>6</sup> (EMNLP 2020):</strong> Adapting BERT for Word Sense Disambiguation with Gloss Selection Objective and Example Sentences. 
+	<i>LINK:</i>&nbsp;&nbsp;<a href="https://github.com/BPYap/BERT-WSD">GitHub</a>&nbsp;&nbsp;<a href="https://arxiv.org/abs/2009.11795">arxiv.org</a>
+</p>
+<img src="./imgs/bert_wsd.png" width="95%" style="margin: 0px 25px;">
+
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+	<strong>GlossBERT<sup>7</sup> (EMNLP 2019):</strong> GlossBERT: BERT for Word Sense Disambiguation with Gloss Knowledge. 
+	<i>LINK:</i>&nbsp;&nbsp;<a href="https://github.com/HSLCY/GlossBERT?tab=readme-ov-file">GitHub</a>&nbsp;&nbsp;<a href="https://arxiv.org/pdf/1908.07245.pdf">arxiv.org</a>
+</p>
+<img src="./imgs/glossbert.png" width="95%" style="margin: 0px 25px;">
+
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+	<strong>ESC<sup>8</sup> (ACL 2021):</strong> ESC: Redesigning WSD with Extractive Sense Comprehension. 
+	<i>LINK:</i>&nbsp;&nbsp;<a href="https://github.com/SapienzaNLP/esc?tab=readme-ov-file">GitHub</a>&nbsp;&nbsp;<a href="https://aclanthology.org/2021.naacl-main.371/">ACL Anthology</a>
+</p>
+<img src="./imgs/esc.png" width="95%" style="margin: 0px 25px;">
+
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+	<strong>SemEq-Base<sup>9</sup> (EMNLP 2021):</strong> Connect-the-Dots: Bridging Semantics between Words and Definitions via Aligning Word Sense Inventories. 
+	<i>LINK:</i>&nbsp;&nbsp;<a href="https://github.com/tencent-ailab/EMNLP21_SemEq">GitHub</a>&nbsp;&nbsp;<a href="https://arxiv.org/pdf/2110.14091.pdf">arxiv.org</a>
+</p>
+<img src="./imgs/semeq.png" width="95%" style="margin: 0px 25px;">
+
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+	<strong>ARES<sup>10</sup> (EMNLP 2020):</strong> With More Contexts Comes Better Performance: Contextualized Sense Embeddings for All-Round Word Sense Disambiguation. 
+	<i>LINK:</i>&nbsp;&nbsp;<a href="https://iris.uniroma1.it/bitstream/11573/1500017/1/Scarlini_With-More-Contexts_2020.pdf">uniroma1.it</a>
+</p>
+<img src="./imgs/ares.png" width="95%" style="margin: 0px 25px;">
+
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+	<strong>LMMS<sup>11</sup> (ACL 2019):</strong> Language Modelling Makes Sense: Propagating Representations through WordNet for Full-Coverage Word Sense Disambiguation. 
+	<i>LINK:</i>&nbsp;&nbsp;<a href="https://github.com/danlou/LMMS/tree/LMMS_ACL19">GitHub</a>&nbsp;&nbsp;<a href="https://aclanthology.org/P19-1569.pdf">ACL Anthology</a>
+</p>
+<img src="./imgs/lmms.png" width="95%" style="margin: 0px 25px;">
+
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+	<strong>Syntagrank<sup>12</sup> (ACL 2020):</strong> Personalized PageRank with Syntagmatic Information for Multilingual Word Sense Disambiguation. 
+	<i>LINK:</i>&nbsp;&nbsp;<a href="https://aclanthology.org/2020.acl-demos.6/">ACL Anthology</a>
+</p>
+<img src="./imgs/syntagrank.png" width="95%" style="margin: 0px 25px;">
+
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+	<strong>Generationary<sup>13</sup> (ACL 2020):</strong> Generationary or “How We Went beyond Word Sense Inventories and Learned to Gloss”. 
+	<i>LINK:</i>&nbsp;&nbsp;<a href="https://aclanthology.org/2020.emnlp-main.585/">ACL Anthology</a>
+</p>
+<img src="./imgs/generationary.png" width="95%" style="margin: 0px 25px;">
+
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+	<strong>SS-WSD<sup>14</sup> (EACL 2023):</strong> Semantic Specialization for Knowledge-based Word Sense Disambiguation. 
+	<i>LINK:</i>&nbsp;&nbsp;<a href="https://github.com/s-mizuki-nlp/semantic_specialization_for_wsd">GitHub</a>&nbsp;&nbsp;<a href="https://arxiv.org/pdf/2304.11340.pdf">arxiv.org</a>
+</p>
+<img src="./imgs/sswsd.png" width="95%" style="margin: 0px 25px;">
+
+
+
+
+
+
+
+
+
+
+<h4 style="text-indent: 25px;">2. Evaluation in LLMs:</h4>
+<p style="text-indent: 50px; padding: 0px 25px; text-align: justify;">
+The experimental model has been submitted together with the paper in the CMT system and will be published on this webpage after the paper is finalized.
+</p>
+
+
+
+<br><br>
+<h3 id="P4">References</h3>
+<ol style="text-align: justify; padding-right: 25px;">
+	<li>Alessandro Raganato, José Camacho-Collados, Roberto Navigli: Word Sense Disambiguation: A Unified Evaluation Framework and Empirical Comparison. EACL (1) 2017: 99-110</li>
+	<li>Terra Blevins, Luke Zettlemoyer: Moving Down the Long Tail of Word Sense Disambiguation with Gloss-Informed Biencoders. CoRR abs/2005.02590 (2020)</li>
+	<li>Michele Bevilacqua, Roberto Navigli: Breaking Through the 80% Glass Ceiling: Raising the State of the Art in Word Sense Disambiguation by Incorporating Knowledge Graph Information. ACL 2020: 2854-2864</li>
+	<li>Yang Song, Xin Cai Ong, Hwee Tou Ng, Qian Lin: Improved Word Sense Disambiguation with Enhanced Sense Representations. EMNLP (Findings) 2021: 4311-4320</li>
+	<li>Yinglin Wang, Ming Wang, Hamido Fujita: Word Sense Disambiguation: A comprehensive knowledge exploitation framework. Knowl. Based Syst. 190: 105030 (2020)</li>
+	<li>Boon Peng Yap, Andrew Koh, Eng Siong Chng: Adapting BERT for Word Sense Disambiguation with Gloss Selection Objective and Example Sentences. EMNLP (Findings) 2020: 41-46</li>
+	<li>Luyao Huang, Chi Sun, Xipeng Qiu, Xuanjing Huang: GlossBERT: BERT for Word Sense Disambiguation with Gloss Knowledge. EMNLP/IJCNLP (1) 2019: 3507-3512</li>
+	<li>Edoardo Barba, Tommaso Pasini, Roberto Navigli: ESC: Redesigning WSD with Extractive Sense Comprehension. NAACL-HLT 2021: 4661-4672</li>
+	<li>Wenlin Yao, Xiaoman Pan, Lifeng Jin, Jianshu Chen, Dian Yu, Dong Yu: Connect-the-Dots: Bridging Semantics between Words and Definitions via Aligning Word Sense Inventories. EMNLP (1) 2021: 7741-7751</li>
+	<li>Bianca Scarlini, Tommaso Pasini, Roberto Navigli: With More Contexts Comes Better Performance: Contextualized Sense Embeddings for All-Round Word Sense Disambiguation. EMNLP (1) 2020: 3528-3539</li>
+	<li>Daniel Loureiro, Alípio Jorge: Language Modelling Makes Sense: Propagating Representations through WordNet for Full-Coverage Word Sense Disambiguation. ACL (1) 2019: 5682-5691</li>
+	<li>Federico Scozzafava, Marco Maru, Fabrizio Brignone, Giovanni Torrisi, Roberto Navigli: Personalized PageRank with Syntagmatic Information for Multilingual Word Sense Disambiguation. ACL (demo) 2020: 37-46</li>
+	<li>Michele Bevilacqua, Marco Maru, Roberto Navigli: Generationary or "How We Went beyond Word Sense Inventories and Learned to Gloss". EMNLP (1) 2020: 7207-7221</li>
+	<li>Mizuki S, Okazaki N: Semantic Specialization for Knowledge-based Word Sense Disambiguation. arXiv preprint arXiv:2304.11340, 2023.</li>
+</ol>
+
+
+
+<br><br>
+<h3 id="P5">Contact</h3>
+</main>
+
+
+
+<br><br>
+<footer>
+	Copyright © 2023 - All Rights Reserved - X X X
+</footer>
+
+</body>
+</html>
